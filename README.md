@@ -135,6 +135,13 @@ on-die ECC; HBM's pseudo-channel sharing of the row/column command buses.
 * Y. Kim, W. Yang, O. Mutlu, "Ramulator: A Fast and Extensible DRAM Simulator", IEEE Computer Architecture Letters, 2016 (doi:10.1109/LCA.2015.2414456).
 * JEDEC JESD79-4 (DDR4 SDRAM) and JESD235 (High Bandwidth Memory): the standards that define the parameters (values here are not taken from them).
 
+## How the measurements are made
+
+The tools and methods this repository measures with are explained, with their overheads, accuracy and pitfalls, in [SimEng 12: Measurement Tools and Methods](https://brendanjameslynskey.github.io/SimEng_12_Measurement_Tools_and_Methods/) and the series glossaries:
+
+* [DRAMsim3, the cross-check reference](https://brendanjameslynskey.github.io/SimEng_12_Measurement_Tools_and_Methods/#card-dramsim3)
+* [Ramulator](https://brendanjameslynskey.github.io/SimEng_12_Measurement_Tools_and_Methods/#card-ramulator)
+
 ## Related
 
 * [FHE_Accelerator_Sim](https://github.com/BrendanJamesLynskey/FHE_Accelerator_Sim): the simulator this plugs into.
