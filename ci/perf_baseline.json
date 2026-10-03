@@ -1,0 +1,11 @@
+{
+ "efficiency": {
+  "hbm stream": 0.9027986758952753,
+  "hbm random": 0.27079172731273055,
+  "hbm 4 streams": 0.46785449725135486,
+  "ddr4 stream 1/3 writes": 0.9051821679112921,
+  "ddr4 random": 0.44004400440044006,
+  "ddr4 stride 8 KiB": 0.4863418983545432
+ },
+ "requests_per_s": 6559.231182534839
+}

@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: pip install -e ".[test]" ruff
+      - name: Lint
+        run: ruff check src tests ci examples validation
+      - name: Tests (analytic checks, property-based protocol checking, checker self-tests)
+        run: pytest --cov=memsim
+      - name: CLI smoke test
+        run: memsim --preset ddr4 --pattern random --n 2000
+
+  fhe-integration:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install with FHE_Accelerator_Sim
+        run: pip install -e ".[test,fhe]"
+      - name: FHE simulator with this HBM model
+        run: |
+          python -c "
+          from fhe_sim import ACCELERATORS, PARAMS, bootstrap_trace, simulate, summarise
+          from memsim.fhe import HBMChunkModel
+          hw = ACCELERATORS['ark']
+          a = summarise(simulate(bootstrap_trace(PARAMS['ark']), hw))
+          b = summarise(simulate(bootstrap_trace(PARAMS['ark']), hw.with_(memory=HBMChunkModel())))
+          print(a['per_bootstrap_s'], a['bound'], b['per_bootstrap_s'], b['bound'])
+          assert b['per_bootstrap_s'] > a['per_bootstrap_s']
+          "
