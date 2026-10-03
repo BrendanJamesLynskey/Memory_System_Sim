@@ -132,7 +132,7 @@ on-die ECC; HBM's pseudo-channel sharing of the row/column command buses.
 * S. Rixner, W. J. Dally, U. J. Kapasi, P. Mattson, J. D. Owens, "Memory Access Scheduling", ISCA 2000 (FR-FCFS).
 * Z. Zhang, Z. Zhu, X. Zhang, "A Permutation-based Page Interleaving Scheme to Reduce Row-buffer Conflicts", MICRO 2000 (XOR bank mapping).
 * S. Li, Z. Yang, D. Reddy, A. Srivastava, B. Jacob, "DRAMsim3: a Cycle-accurate, Thermal-Capable DRAM Simulator", IEEE Computer Architecture Letters, 2020.
-* Y. Kim, W. Yang, O. Mutlu, "Ramulator: A Fast and Extensible DRAM Simulator", IEEE Computer Architecture Letters, 2015.
+* Y. Kim, W. Yang, O. Mutlu, "Ramulator: A Fast and Extensible DRAM Simulator", IEEE Computer Architecture Letters, 2016 (doi:10.1109/LCA.2015.2414456).
 * JEDEC JESD79-4 (DDR4 SDRAM) and JESD235 (High Bandwidth Memory): the standards that define the parameters (values here are not taken from them).
 
 ## Related
