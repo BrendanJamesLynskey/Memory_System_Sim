@@ -1,6 +1,6 @@
 // Jenkins pipeline for Memory_System_Sim.
 //
-// Stages: lint (ruff) -> tests (pytest, JUnit) with coverage (Cobertura) -> the
+// Stages: clean old reports -> lint (ruff) -> tests (pytest, JUnit) with coverage (Cobertura) -> the
 // performance and behaviour gate against ci/perf_baseline.json -> results.md ->
 // an optional nightly load-latency sweep.
 //
@@ -21,6 +21,15 @@ pipeline {
     }
 
     stages {
+        // The workspace is reused between builds (it keeps the virtualenv and build caches), so
+        // delete the previous build's reports first. Without this a build that fails before its
+        // tests run publishes the last build's JUnit results as its own (Rust_DES_Kernel #4 did).
+        stage('Clean reports') {
+            steps {
+                sh 'rm -f pytest-junit.xml coverage.xml perf_report.md sweep.csv'
+            }
+        }
+
         stage('Setup') {
             steps {
                 sh '''
